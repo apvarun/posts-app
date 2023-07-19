@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ColumnCount } from '../../types/grid.type';
 
 @Component({
   selector: 'app-grid',
@@ -7,5 +8,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GridComponent {
-  @Input() columns = 1;
+  @Input() columns: ColumnCount = 1;
 }

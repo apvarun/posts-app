@@ -1,1 +1,7 @@
 <h1 class="text-xl font-semibold border-b mb-4">All posts</h1>
+
+<div>
+  <div *ngFor="let posts of (posts$|async)">
+    {{posts.id}}
+  </div>
+</div>

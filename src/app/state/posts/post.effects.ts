@@ -19,7 +19,7 @@ export class PostEffects {
     private actions$: Actions,
     private store: Store<AppState>,
     private postService: PostsService
-  ) {}
+  ) { }
 
   loadPosts$ = createEffect(() =>
     this.actions$.pipe(
@@ -27,7 +27,7 @@ export class PostEffects {
       switchMap(() =>
         this.postService.getPosts().pipe(
           map((posts) => loadPostsSuccess({ posts })),
-          catchError((error) => of(loadPostsFailure({ error })))
+          catchError((error) => of(loadPostsFailure({ error: error.message })))
         )
       )
     )

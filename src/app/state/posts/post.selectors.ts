@@ -8,3 +8,8 @@ export const selectAllPosts = createSelector(
   selectPosts,
   (state: PostState) => state.posts
 );
+
+export const selectPostStatus = createSelector(
+  selectPosts,
+  ({ status, error }: PostState) => ({ status, error })
+);

@@ -1,8 +1,24 @@
-<h1 class="text-xl font-semibold border-b mb-4">All posts</h1>
+<h1 class="text-xl lg:text-3xl text-center font-semibold border border-slate-300 bg-slate-100 rounded p-2 my-4 lg:my-8">
+  All posts
+</h1>
 
-<app-grid [columns]="10">
-  <ng-container *ngIf="posts$|async as posts">
+<ng-container *ngIf="posts$|async as posts">
+  <app-grid *ngIf="posts.length > 0" [columns]="columnCount">
     <app-post *ngFor="let post of posts" [post]="post.data" [key]="post.key"
       (togglePost)="togglePost(post.data.id, $event)"></app-post>
-  </ng-container>
-</app-grid>
+  </app-grid>
+</ng-container>
+
+
+<ng-container *ngIf="status$|async as postsStatus">
+  <div class="space-y-4" *ngIf="postsStatus.status === 'loading'">
+    <div class="w=fill p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
+    <div class="w=fill p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
+    <div class="w=fill p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
+    <div class="w=fill p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
+    <div class="w=fill p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
+  </div>
+  <div *ngIf="postsStatus.status === 'error'">
+    <p class="text-red-400 text-center px-4 py-8">{{postsStatus.error}}</p>
+  </div>
+</ng-container>

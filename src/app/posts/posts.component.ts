@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectAllPosts } from '../state/posts/post.selectors';
+import { selectAllPosts, selectPostStatus } from '../state/posts/post.selectors';
 import { AppState } from '../state/app.state';
 import { loadPosts, togglePost } from '../state/posts/post.actions';
 import { PostData } from './models/post.model';
+import { ColumnCount } from '../shared/types/grid.type';
 
 @Component({
   selector: 'app-posts',
@@ -12,6 +13,9 @@ import { PostData } from './models/post.model';
 })
 export class PostsComponent {
   posts$ = this.store.select(selectAllPosts);
+  status$ = this.store.select(selectPostStatus);
+
+  columnCount: ColumnCount = 10; // number of columns in the grid
 
   constructor(private store: Store<AppState>) {
     this.store.dispatch(loadPosts());

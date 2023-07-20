@@ -1,5 +1,8 @@
 <h1 class="text-xl font-semibold border-b mb-4">All posts</h1>
 
 <app-grid [columns]="10">
-  <app-post *ngFor="let post of (posts$|async)" [post]="post"></app-post>
+  <ng-container *ngIf="posts$|async as posts">
+    <app-post *ngFor="let post of posts" [post]="post.data" [key]="post.key"
+      (togglePost)="togglePost(post.data.id, $event)"></app-post>
+  </ng-container>
 </app-grid>

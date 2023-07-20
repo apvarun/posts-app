@@ -1,3 +1,5 @@
-<div *ngIf="post" class="rounded border w-full h-full grid place-items-center">
-  {{ post.id }}
-</div>
+<button *ngIf="post" class=" w-full h-full aspect-square line-clamp-2 p-2" (click)="toggle()">
+  <span [class]="isId ? 'text-2xl font-bold' : 'text-sm line-clamp-2 lg:line-clamp-4'" [title]="post[key]">
+    {{ post[key] }}
+  </span>
+</button>

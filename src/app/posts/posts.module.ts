@@ -6,9 +6,20 @@ import { PostsService } from './services/posts.service';
 import { SharedModule } from '../shared/shared.module';
 import { PostComponent } from './components/post/post.component';
 
+import { postReducer } from './../state/posts/post.reducer';
+import { PostEffects } from './../state/posts/post.effects';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
 @NgModule({
   declarations: [PostsComponent, PostComponent],
-  imports: [CommonModule, PostsRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    PostsRoutingModule,
+    SharedModule,
+    StoreModule.forFeature('post', postReducer),
+    EffectsModule.forFeature([PostEffects]),
+  ],
   providers: [PostsService],
 })
 export class PostsModule {}

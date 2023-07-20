@@ -1,0 +1,11 @@
+<h1 class="text-xl lg:text-3xl text-center font-semibold border border-slate-300 bg-slate-100 rounded p-2 mb-4 lg:mb-8">
+  All posts
+</h1>
+
+<div class="mb-4 lg:mb-8 flex justify-end">
+  <label class="flex gap-4 items-center">
+    <span>Columns: {{ columnCount }}</span>
+    <input type="range" min="1" max="12" step="1" [ngModel]="columnCount" (ngModelChange)="changeCount($event)"
+      class="min-w-[12rem]" />
+  </label>
+</div>

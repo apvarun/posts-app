@@ -18,6 +18,14 @@ export class MockGridComponent {
 }
 
 @Component({
+  selector: 'app-posts-header',
+  template: '',
+})
+export class MockHeaderComponent {
+  @Input() columnCount?: number;
+}
+
+@Component({
   selector: 'app-post',
   template: '',
 })
@@ -39,7 +47,7 @@ describe('PostsComponent', () => {
   beforeEach(() => {
 
     TestBed.configureTestingModule({
-      declarations: [PostsComponent, MockGridComponent, MockPostComponent],
+      declarations: [PostsComponent, MockGridComponent, MockPostComponent, MockHeaderComponent],
       providers: [
         provideMockStore()
       ]

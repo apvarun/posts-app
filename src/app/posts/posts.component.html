@@ -1,6 +1,4 @@
-<h1 class="text-xl lg:text-3xl text-center font-semibold border border-slate-300 bg-slate-100 rounded p-2 mb-4 lg:mb-8">
-  All posts
-</h1>
+<app-posts-header [columnCount]="columnCount" (columnCountChange)="columnCount = $event"></app-posts-header>
 
 <ng-container *ngIf="posts$|async as posts">
   <app-grid *ngIf="posts.length > 0" [columns]="columnCount">

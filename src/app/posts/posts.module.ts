@@ -10,11 +10,14 @@ import { postReducer } from './../state/posts/post.reducer';
 import { PostEffects } from './../state/posts/post.effects';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [PostsComponent, PostComponent],
+  declarations: [PostsComponent, PostComponent, HeaderComponent],
   imports: [
     CommonModule,
+    FormsModule,
     PostsRoutingModule,
     SharedModule,
     StoreModule.forFeature('post', postReducer),

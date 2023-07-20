@@ -1,0 +1,3 @@
+:host {
+  @apply rounded border transition-all hover:border-slate-700;
+}

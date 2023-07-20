@@ -4,6 +4,7 @@
 
 <ng-container *ngIf="posts$|async as posts">
   <app-grid *ngIf="posts.length > 0" [columns]="columnCount">
+
     <app-post *ngFor="let post of posts" [post]="post.data" [key]="post.key"
       (togglePost)="togglePost(post.data.id, $event)"></app-post>
   </app-grid>
@@ -12,11 +13,11 @@
 
 <ng-container *ngIf="status$|async as postsStatus">
   <div class="space-y-4" *ngIf="postsStatus.status === 'loading'">
-    <div class="w=fill p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
-    <div class="w=fill p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
-    <div class="w=fill p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
-    <div class="w=fill p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
-    <div class="w=fill p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
+    <div class="w-full p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
+    <div class="w-full p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
+    <div class="w-full p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
+    <div class="w-full p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
+    <div class="w-full p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
   </div>
   <div *ngIf="postsStatus.status === 'error'">
     <p class="text-red-400 text-center px-4 py-8">{{postsStatus.error}}</p>

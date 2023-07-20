@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Post } from '../../models/post.model';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+import { PostData } from '../../models/post.model';
 
 @Component({
   selector: 'app-post',
@@ -8,5 +14,9 @@ import { Post } from '../../models/post.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostComponent {
-  @Input() post: Post | null = null;
+  @Input() post: PostData | null = null;
+
+  @Input() isOpen = false;
+
+  @Output() togglePost = new EventEmitter();
 }

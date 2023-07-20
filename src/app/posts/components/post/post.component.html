@@ -1,3 +1,11 @@
-<div *ngIf="post" class="rounded border w-full h-full grid place-items-center">
-  {{ post.id }}
-</div>
+<button *ngIf="post"
+  class="rounded border w-full h-full aspect-square line-clamp-2 p-1 transition-all hover:border-slate-700"
+  [class.border-slate-700]="isOpen" (click)="togglePost.emit()">
+
+  <span class="text-sm line-clamp-2 lg:line-clamp-4" [title]="post.title" *ngIf="!isOpen; else title">{{ post.title
+    }}</span>
+  <ng-template #title>
+    <span class="text-xl font-bold">{{ post.userId }}</span>
+  </ng-template>
+
+</button>

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { PostsService } from './services/posts.service';
+import { Store } from '@ngrx/store';
+import { selectAllPosts } from '../state/posts/post.selectors';
+import { AppState } from '../state/app.state';
+import { loadPosts, togglePost } from '../state/posts/post.actions';
 
 @Component({
   selector: 'app-posts',
@@ -7,7 +10,13 @@ import { PostsService } from './services/posts.service';
   styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent {
-  posts$ = this.postsService.posts$;
+  posts$ = this.store.select(selectAllPosts);
 
-  constructor(private postsService: PostsService) {}
+  constructor(private store: Store<AppState>) {
+    this.store.dispatch(loadPosts());
+  }
+
+  public togglePost(postId: number) {
+    this.store.dispatch(togglePost({ id: postId }));
+  }
 }

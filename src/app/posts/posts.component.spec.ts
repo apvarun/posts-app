@@ -2,7 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PostsComponent } from './posts.component';
 import { MemoizedSelector } from '@ngrx/store';
-import { selectAllPosts, selectPostStatus } from '../state/posts/post.selectors';
+import {
+  selectAllPosts,
+  selectPostStatus,
+} from '../state/posts/post.selectors';
 import { Post, PostState, PostStatus } from './models/post.model';
 import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -40,28 +43,31 @@ describe('PostsComponent', () => {
 
   let mockStore: MockStore;
   let mockAllPostsSelector: MemoizedSelector<PostState, Post[]>;
-  let mockPostsStatusSelector: MemoizedSelector<PostState, {
-    status: PostStatus; error: string | null
-  }>;
+  let mockPostsStatusSelector: MemoizedSelector<
+    PostState,
+    {
+      status: PostStatus;
+      error: string | null;
+    }
+  >;
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
-      declarations: [PostsComponent, MockGridComponent, MockPostComponent, MockHeaderComponent],
-      providers: [
-        provideMockStore()
-      ]
+      declarations: [
+        PostsComponent,
+        MockGridComponent,
+        MockPostComponent,
+        MockHeaderComponent,
+      ],
+      providers: [provideMockStore()],
     });
 
     mockStore = TestBed.inject(MockStore);
-    mockAllPostsSelector = mockStore.overrideSelector(
-      selectAllPosts,
-      []
-    );
-    mockPostsStatusSelector = mockStore.overrideSelector(
-      selectPostStatus,
-      { status: 'pending', error: null }
-    );
+    mockAllPostsSelector = mockStore.overrideSelector(selectAllPosts, []);
+    mockPostsStatusSelector = mockStore.overrideSelector(selectPostStatus, {
+      status: 'pending',
+      error: null,
+    });
 
     fixture = TestBed.createComponent(PostsComponent);
     component = fixture.componentInstance;
@@ -75,11 +81,11 @@ describe('PostsComponent', () => {
           userId: 1,
           id: 1,
           title: 'title',
-          body: 'body'
+          body: 'body',
         },
 
-        key: 'title'
-      }
+        key: 'title',
+      },
     ]);
 
     mockPostsStatusSelector.setResult({
@@ -92,8 +98,7 @@ describe('PostsComponent', () => {
 
     const appPosts = fixture.debugElement.queryAll(By.css('app-post'));
     expect(appPosts.length).toBe(1);
-
-  })
+  });
 
   it('should dispatch an action when togglePost is invoked', () => {
     mockAllPostsSelector.setResult([
@@ -102,11 +107,11 @@ describe('PostsComponent', () => {
           userId: 1,
           id: 1,
           title: 'title',
-          body: 'body'
+          body: 'body',
         },
 
-        key: 'title'
-      }
+        key: 'title',
+      },
     ]);
 
     mockPostsStatusSelector.setResult({
@@ -122,7 +127,9 @@ describe('PostsComponent', () => {
     spyOn(mockStore, 'dispatch');
     appPost.triggerEventHandler('togglePost', 'title');
 
-    expect(mockStore.dispatch).toHaveBeenCalledWith(togglePost({ id: 1, key: 'title' }))
+    expect(mockStore.dispatch).toHaveBeenCalledWith(
+      togglePost({ id: 1, key: 'title' })
+    );
   });
 
   it('should show loading state when posts are being loaded', () => {
@@ -138,7 +145,9 @@ describe('PostsComponent', () => {
 
     expect(appPost.length).toEqual(0);
 
-    const loadingSkeleton = fixture.debugElement.queryAll(By.css('div[class="space-y-4"] > div'));
+    const loadingSkeleton = fixture.debugElement.queryAll(
+      By.css('div[class="space-y-4"] > div')
+    );
 
     expect(loadingSkeleton.length).toEqual(5);
   });

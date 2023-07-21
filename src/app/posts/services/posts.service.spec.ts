@@ -1,14 +1,13 @@
-import { TestBed } from "@angular/core/testing";
+import { TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
 
-import { PostsService } from "src/app/posts/services/posts.service";
-import { environment } from "src/environments/environment";
+import { PostsService } from 'src/app/posts/services/posts.service';
+import { environment } from 'src/environments/environment';
 
 describe('Posts Service', () => {
-
   let service: PostsService;
   let httpController: HttpTestingController;
 
@@ -23,9 +22,7 @@ describe('Posts Service', () => {
     httpController = TestBed.inject(HttpTestingController);
   });
 
-
   it('should call getPosts and return an array of posts', () => {
-
     const mockPosts = [
       {
         id: 1,
@@ -46,5 +43,4 @@ describe('Posts Service', () => {
 
     req.flush(mockPosts);
   });
-
 });

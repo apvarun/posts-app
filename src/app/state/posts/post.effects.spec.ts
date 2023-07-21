@@ -1,13 +1,12 @@
-import { TestBed } from "@angular/core/testing";
-import { PostEffects } from "./post.effects";
-import { Actions } from "@ngrx/effects";
-import { Store } from "@ngrx/store";
-import { PostsService } from "src/app/posts/services/posts.service";
-import { Subject, of } from "rxjs";
-import { loadPosts } from "./post.actions";
+import { TestBed } from '@angular/core/testing';
+import { PostEffects } from './post.effects';
+import { Actions } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { PostsService } from 'src/app/posts/services/posts.service';
+import { Subject, of } from 'rxjs';
+import { loadPosts } from './post.actions';
 
 describe('Post Effects', () => {
-
   let effects: PostEffects;
 
   let actions$: Subject<any>;
@@ -21,9 +20,9 @@ describe('Post Effects', () => {
       providers: [
         PostEffects,
         { provide: Actions, useValue: actions$ },
-        { provide: Store, useValue: { select: () => { }, dispatch: () => { } } },
+        { provide: Store, useValue: { select: () => {}, dispatch: () => {} } },
         { provide: PostsService, useValue: postsService },
-      ]
+      ],
     });
   });
 
@@ -40,10 +39,9 @@ describe('Post Effects', () => {
 
     effects.loadPosts$.subscribe(() => {
       expect(postsService.getPosts).toHaveBeenCalled();
-      done()
+      done();
     });
 
     actions$.next(loadPosts());
   });
-
 });

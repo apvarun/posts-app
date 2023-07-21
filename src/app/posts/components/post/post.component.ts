@@ -22,15 +22,15 @@ export class PostComponent {
 
   @Output() togglePost = new EventEmitter<keyof PostData>();
 
+  // To highlight the id and userId fields visually
   get isId() {
     return this.key === 'id' || this.key === 'userId';
   }
 
   toggle() {
-    const nextKey = this.keys[
-      (this.keys.indexOf(this.key) + 1) % this.keys.length
-    ];
+    const nextKey =
+      this.keys[(this.keys.indexOf(this.key) + 1) % this.keys.length];
 
-    this.togglePost.emit(nextKey)
+    this.togglePost.emit(nextKey);
   }
 }

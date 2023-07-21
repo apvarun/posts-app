@@ -21,9 +21,7 @@ export const postReducer = createReducer(
     (state, { id, key }): PostState => ({
       ...state,
       posts: state.posts.map((post) =>
-        post.data.id === id
-          ? { ...post, key }
-          : post
+        post.data.id === id ? { ...post, key } : post
       ),
     })
   ),

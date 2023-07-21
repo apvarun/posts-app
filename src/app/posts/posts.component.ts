@@ -9,7 +9,6 @@ import { ColumnCount } from '../shared/types/grid.type';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent {
   posts$ = this.store.select(selectAllPosts);

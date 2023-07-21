@@ -8,7 +8,7 @@
   </app-grid>
 </ng-container>
 
-
+<!-- Loading and error states -->
 <ng-container *ngIf="status$|async as postsStatus">
   <div class="space-y-4" *ngIf="postsStatus.status === 'loading'">
     <div class="w-full p-4 h-2 animate-pulse bg-slate-100 rounded"></div>
